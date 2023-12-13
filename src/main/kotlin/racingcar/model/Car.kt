@@ -1,5 +1,7 @@
 package racingcar.model
 
+import racingcar.view.OutputView
+
 class Car(private val raceCalculation: RaceCalculation) {
     private val cars = mutableMapOf<String, Int>()
 
@@ -17,6 +19,13 @@ class Car(private val raceCalculation: RaceCalculation) {
                 cars[carName] = forwardCount + FORWARD
             }
         }
+    }
+
+    fun attemptRace() {
+        for (carName in cars.keys) {
+            moveForward(carName)
+        }
+        OutputView.printResult(cars)
     }
 
     fun findWinners(): List<String> {
